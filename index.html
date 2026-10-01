@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5f7fb" />
+  <meta name="description" content="Быстрый конвертер изображений и файлов в Telegram Mini App" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>FileConvert</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">↻</div>
+        <div>
+          <div class="brand-name">FileConvert</div>
+          <div class="brand-subtitle">Конвертер файлов</div>
+        </div>
+      </div>
+      <button class="icon-button" id="themeButton" aria-label="Тема">☼</button>
+    </header>
+
+    <main id="mainContent">
+      <section class="screen active" data-screen="home">
+        <div class="hero">
+          <div class="hero-orb orb-one"></div>
+          <div class="hero-orb orb-two"></div>
+          <div class="hero-icon">⇄</div>
+          <span class="eyebrow">БЫСТРО • ПРОСТО • БЕСПЛАТНО</span>
+          <h1>Конвертируйте<br /><span>изображения</span></h1>
+          <p>JPG, PNG и WEBP прямо на вашем устройстве. Файлы не отправляются на сервер.</p>
+        </div>
+
+        <div class="section-title">
+          <span>Что конвертируем?</span>
+        </div>
+        <div class="type-grid">
+          <button class="type-card" data-action="image">
+            <span class="type-icon image-icon">▧</span>
+            <strong>Изображения</strong>
+            <small>JPG · PNG · WEBP</small>
+            <span class="card-arrow">→</span>
+          </button>
+          <button class="type-card disabled" data-action="files">
+            <span class="type-icon file-icon">▤</span>
+            <strong>Файлы</strong>
+            <small>PDF · DOCX · XLSX</small>
+            <span class="soon">Скоро</span>
+          </button>
+        </div>
+
+        <div class="feature-row">
+          <div><span>⚡</span><b>Моментально</b><small>Обработка на устройстве</small></div>
+          <div><span>🔒</span><b>Приватно</b><small>Файлы не загружаются</small></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="converter">
+        <div class="screen-heading">
+          <button class="back-button" data-action="home">←</button>
+          <div><span class="eyebrow">ИЗОБРАЖЕНИЕ</span><h2>Конвертер</h2></div>
+        </div>
+
+        <div id="dropZone" class="drop-zone">
+          <input id="fileInput" type="file" accept="image/jpeg,image/png,image/webp" hidden />
+          <div class="upload-symbol">↑</div>
+          <h3>Выберите изображение</h3>
+          <p>JPG, PNG или WEBP<br />до 20 МБ</p>
+          <button class="primary-button" id="chooseButton">Выбрать файл</button>
+          <small>Можно также перетащить файл сюда</small>
+        </div>
+
+        <div id="filePanel" class="file-panel hidden">
+          <div class="file-preview" id="filePreview">IMG</div>
+          <div class="file-info"><strong id="fileName">—</strong><span id="fileMeta">—</span></div>
+          <button class="remove-button" id="removeFile" aria-label="Удалить">×</button>
+        </div>
+
+        <div class="format-section">
+          <div class="section-title"><span>Формат результата</span></div>
+          <div class="format-grid" id="formatGrid">
+            <button class="format-button active" data-format="image/png">PNG</button>
+            <button class="format-button" data-format="image/jpeg">JPG</button>
+            <button class="format-button" data-format="image/webp">WEBP</button>
+          </div>
+        </div>
+
+        <div class="quality-section hidden" id="qualitySection">
+          <div class="quality-head"><span>Качество</span><b id="qualityValue">90%</b></div>
+          <input id="qualityInput" type="range" min="10" max="100" value="90" />
+        </div>
+
+        <button class="convert-button" id="convertButton" disabled>Конвертировать</button>
+        <div class="status-message" id="statusMessage"></div>
+      </section>
+
+      <section class="screen" data-screen="history">
+        <div class="screen-heading no-back"><div><span class="eyebrow">ЛОКАЛЬНО</span><h2>Мои файлы</h2></div></div>
+        <div id="historyList" class="history-list"></div>
+      </section>
+
+      <section class="screen" data-screen="settings">
+        <div class="screen-heading no-back"><div><span class="eyebrow">ПРИЛОЖЕНИЕ</span><h2>Настройки</h2></div></div>
+        <div class="settings-card">
+          <div class="setting-row"><div><b>Тёмная тема</b><small>Следовать теме Telegram</small></div><button class="toggle active" id="themeToggle"><span></span></button></div>
+          <div class="setting-row"><div><b>О приложении</b><small>FileConvert · MVP 1.0</small></div><span>›</span></div>
+          <div class="setting-row danger-row" id="clearHistory"><div><b>Очистить историю</b><small>Удалить локальные записи</small></div><span>›</span></div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Навигация">
+      <button class="nav-item active" data-nav="home"><span>⌂</span><small>Главная</small></button>
+      <button class="nav-item" data-nav="history"><span>▱</span><small>Файлы</small></button>
+      <button class="nav-item" data-nav="settings"><span>⚙</span><small>Настройки</small></button>
+    </nav>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
