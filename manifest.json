@@ -1,11 +1,11 @@
 {
-  "name": "FileConvert",
+  "name": "FileConvert — конвертер файлов",
   "short_name": "FileConvert",
-  "description": "Конвертер изображений и файлов",
-  "start_url": ".",
+  "description": "Профессиональный Telegram Mini App для конвертации изображений и файлов",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#f5f7fb",
   "theme_color": "#1677ff",
-  "lang": "ru",
-  "icons": []
+  "lang": "ru"
 }
