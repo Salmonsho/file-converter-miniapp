@@ -1,0 +1,11 @@
+{
+  "name": "FileConvert",
+  "short_name": "FileConvert",
+  "description": "Конвертер изображений и файлов",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#1677ff",
+  "lang": "ru",
+  "icons": []
+}
